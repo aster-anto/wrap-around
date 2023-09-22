@@ -1,85 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="/admin.xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<h:head>
+	<title>Wrap Around Services</title>
+	<h:outputStylesheet>
+		.jqplot-series-canvas {
+			background: white;
+		}
 
-    <ui:define name="head">
-        <title>Admin Starter</title>
-    </ui:define>
+		.ui-datatable td {
+			font-size: 10px;
+		}
 
-    <ui:define name="logo-lg">
-        Admin Starter
-    </ui:define>
+		body .ui-datatable thead th .ui-column-title {
+			font-size: 10px;
+		}
+	</h:outputStylesheet>
+</h:head>
 
-    <ui:define name="logo-mini">
-        Admin
-    </ui:define>
-
-    <ui:define name="menu">
-        <ul class="sidebar-menu">
-            <li>
-                <p:link href="/index.xhtml" onclick="clearBreadCrumbs()">
-                    <i class="fa fa-home"></i>
-                    <span>Home</span>
-                </p:link>
-            </li>
-            <li class="header">
-                General
-            </li>
-            <li>
-                <p:link href="/car-list.xhtml">
-                    <i class="fa fa-car"></i>
-                    <span>Cars</span>
-                </p:link>
-            </li>
-        </ul>
-    </ui:define>
-
-    <!--    <ui:define name="top-menu">-->
-    <!--        <ui:include src="/includes/top-bar.xhtml"/>-->
-    <!--    </ui:define>-->
-
-    <ui:define name="title">
-        <h2 class="align-center">
-            Welcome to the <span class="text-aqua"> <i><a href="https://github.com/adminfaces/admin-starter"
-                                                          target="_blank"
-                                                          style="text-transform: none;text-decoration: none"> AdminFaces Starter</a></i></span>
-            Project!
-            <br/>
-            <small>Integrating
-                <p:link value="Primefaces" href="http://primefaces.org"/>
-                ,
-                <p:link value="Bootstrap"
-                        href="http://getbootstrap.com/"/>
-                and
-                <p:link value="Admin LTE" href="https://almsaeedstudio.com/themes/AdminLTE/index2.html/"/>
-                into your
-                <p:link value="JSF" href="https://javaserverfaces.java.net/"/>
-                application.
-            </small>
-        </h2>
-    </ui:define>
-
-    <ui:define name="description">
-        A page description
-    </ui:define>
-
-    <ui:define name="body">
-        <h2>Page body</h2>
-    </ui:define>
-
-
-    <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
-        </a>
-
-        <div class="pull-right hidden-xs" style="color: gray">
-            <i>1.0.0</i>
-        </div>
-    </ui:define>
-
-
-</ui:composition>
+<h:body>
+	<p:outputPanel>
+		<ui:insert name="header">
+			<ui:include src="/common/header.xhtml" />
+		</ui:insert>
+		<div class="ui-g">
+			<div class="ui-g-2"></div>
+			<div class="ui-g-8">
+				<h2 style="text-align: center">Please use buttons below to create new person entry or view <br/> and update existing data</h2>
+				<p:panel id="action" header="Action" style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:button  value="See existing person data"
+							icon="pi pi-users" style="margin-right:20px;">
+						</p:button>
+						<p:button  value="Create a person entry"
+							icon="pi-users" style="margin-right:20px;">
+						</p:button>
+					</h:panelGrid>
+				</p:panel>
+                <p:panel id="personList" header="View Data"
+                style="margin-bottom:20px">
+                </p:panel>
+				<p:panel id="reporting" header="Reporting"
+					style="margin-bottom:20px">
+					
+				</p:panel>
+                <p:panel id="notificationHistory" header="Notification History"
+                style="margin-bottom:20px">
+                </p:panel>
+				
+			</div>
+			<div class="ui-g-2" />
+		</div>
+		<ui:insert name="footer">
+			<ui:include src="/common/footer.xhtml" />
+		</ui:insert>
+	</p:outputPanel>
+</h:body>
+</html>
