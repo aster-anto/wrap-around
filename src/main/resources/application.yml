@@ -2,4 +2,9 @@ joinfaces:
   faces:
     PROJECT_STAGE: Development
   primefaces:
-    theme: saga
+    theme: admin
+
+amazon:
+  aws:
+    accesskey: sdvdsgvdsag
+    secretkey: fsdvdgdsaggasd
