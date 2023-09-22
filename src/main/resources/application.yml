@@ -1,3 +1,16 @@
+spring:
+  mail:
+    host: email-smtp.us-east-1.amazonaws.com
+    port: 587
+    username: wraparound-notification-user
+    password: x!CqD2-%
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 joinfaces:
   faces:
     PROJECT_STAGE: Development
