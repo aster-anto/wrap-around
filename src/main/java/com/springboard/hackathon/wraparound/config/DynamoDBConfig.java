@@ -1,9 +1,8 @@
 package com.springboard.hackathon.wraparound.config;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.*;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -18,26 +17,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableDynamoDBRepositories(basePackages = {"com.springboard.hackathon.wraparound.repo"})
 public class DynamoDBConfig {
 
-    @Value("${amazon.aws.accesskey}")
-    private String amazonAWSAccessKey;
-
-    @Value("${amazon.aws.secretkey}")
-    private String amazonAWSSecretKey;
-
-    public AWSCredentialsProvider amazonAWSCredentialsProvider() {
-        return new AWSStaticCredentialsProvider(amazonAWSCredentials());
-    }
-
-    @Bean
-    public AWSCredentials amazonAWSCredentials() {
-        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
-    }
-
-//    @Bean
-//    public DynamoDBMapperConfig dynamoDBMapperConfig() {
-//        return DynamoDBMapperConfig.DEFAULT;
-//    }
-
     @Bean
     public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig config) {
         return new DynamoDBMapper(amazonDynamoDB, config);
@@ -45,7 +24,7 @@ public class DynamoDBConfig {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-        return AmazonDynamoDBClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider())
+        return AmazonDynamoDBClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain())
                 .withRegion(Regions.US_EAST_1).build();
     }
 }
