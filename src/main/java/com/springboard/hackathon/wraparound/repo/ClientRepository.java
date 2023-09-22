@@ -1,12 +1,17 @@
 package com.springboard.hackathon.wraparound.repo;
 
-import com.springboard.hackathon.wraparound.entity.Client;
+import com.springboard.hackathon.wraparound.beans.ClientBean;
+
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @EnableScan
+@Repository("clientRepository")
 public interface ClientRepository {
 
-    List<Client> findByLastName(String lastname);
+    List<ClientBean> findByLastName(String lastname);
+
+    void saveClient(ClientBean client);
 }
